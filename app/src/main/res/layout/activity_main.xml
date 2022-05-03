@@ -12,16 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/header_title"
+            android:text="@string/register"
+            android:textSize="40sp"
+            android:textColor="@color/mainColor"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/select_photo_under"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/select_photo"
+            app:layout_constraintEnd_toEndOf="@+id/select_photo"
+            app:layout_constraintStart_toStartOf="@+id/select_photo"
+            app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+        <Button
+            android:id="@+id/select_photo"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="16dp"
+            android:src="@color/bg"
+            android:text="@string/photo_select"
+            app:civ_border_width="4dp"
             android:background="@drawable/shape_photo"
-            android:text="Select Photo"
+            app:civ_border_color="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/header_title"/>
 
         <EditText
         android:id="@+id/editUsername"
@@ -32,27 +60,29 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/shape_register"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/hintUser"
         android:inputType="textPersonName"
         android:padding="15dp"
-        android:textAlignment="center"
+            android:textColorHint="@color/secondary"
+            android:textAlignment="center"
         android:textSize="25sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/select_photo_under" />
+        app:layout_constraintTop_toBottomOf="@id/select_photo" />
 
     <EditText
         android:id="@+id/editEmail"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/hintEmail"
         android:layout_marginTop="30dp"
         android:inputType="textEmailAddress"
         android:textAlignment="center"
         android:textSize="25sp"
+        android:textColorHint="@color/secondary"
         android:textColor="@color/black"
         android:background="@drawable/shape_register"
         app:layout_constraintEnd_toEndOf="@+id/editUsername"
@@ -66,7 +96,8 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/shape_register"
         android:ems="10"
-        android:hint="Password"
+        android:textColorHint="@color/secondary"
+        android:hint="@string/hintPassword"
         android:textColor="@color/black"
         android:inputType="textPassword"
         android:textAlignment="center"
@@ -75,13 +106,13 @@
         app:layout_constraintStart_toStartOf="@+id/editEmail"
         app:layout_constraintTop_toBottomOf="@+id/editEmail"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/register_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Register"
-        android:background="@color/secondary"
+        android:text="@string/register"
+        android:backgroundTint="@color/mainColor"
         app:layout_constraintEnd_toEndOf="@+id/editPassword"
         app:layout_constraintStart_toStartOf="@+id/editPassword"
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
@@ -92,7 +123,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:layout_marginBottom="30dp"
-        android:text="Already have an account?"
+        android:text="@string/have_account"
         android:textSize="18sp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/register_button"
