@@ -16,6 +16,8 @@ class SplashActivity : AppCompatActivity() {
         _splash = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(_splash.root)
 
+        supportActionBar?.hide()
+
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
@@ -33,6 +35,8 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent (this,LoginActivity::class.java)
             startActivity(intent)
             finish()
+
+
         }
     }
 }

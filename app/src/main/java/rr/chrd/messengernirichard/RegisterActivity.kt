@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import rr.chrd.messengernirichard.databinding.ActivityMainBinding
+import rr.chrd.messengernirichard.model.User
+import rr.chrd.messengernirichard.view.LatestMessageActivity
 import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -24,6 +26,9 @@ class RegisterActivity : AppCompatActivity() {
         registerButton()
         showLogin()
         selectPhoto()
+
+        supportActionBar?.hide()
+
     }
     private fun selectPhoto() {
         _binding.selectPhoto.setOnClickListener {
@@ -75,33 +80,54 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
         private fun uploadImageToFirebase() {
-            if (selectedPhotoUri ==null) return
+            if (selectedPhotoUri == null) {
+                saveUsertoFirebase("")
+                return
+            }
             val filename = UUID.randomUUID().toString()
             val ref = FirebaseStorage.getInstance().getReference("/image/$filename")
             ref.putFile(selectedPhotoUri!!)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Successfully Uploaded", Toast.LENGTH_LONG).show()
                     Log.d("RegisterActivity","Successfully uploaded Image : ${it.metadata?.path}")
-                    saveUsertoFirebase(it.toString())
+
+                    ref.downloadUrl.addOnSuccessListener { url ->
+                        Log.d("RegisterActivity", "File Location: $url")
+                        saveUsertoFirebase(url.toString())
+                    }
+                }
+                .addOnProgressListener {
+                    val progress = 100 * (it.bytesTransferred/it.totalByteCount)
+                    Log.d("RegisterActivity", "Upload Progress: $progress")
                 }
                 .addOnFailureListener {
+                    Log.d("RegisterActivity", "Error: ${it.message}")
                     Toast.makeText(this, it.message.toString(), Toast.LENGTH_LONG).show()
                 }
-            ref.downloadUrl.addOnSuccessListener {
-                Log.d("RegisterActivity", "File Location $it")
-            }
     }
 
     private fun saveUsertoFirebase(profileImageUrl : String) {
         val uid = FirebaseAuth.getInstance().uid?: ""
-        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
-        val users = User(uid,_binding.editUsername.text.toString(),profileImageUrl)
+
+//        if(uid.isNullOrEmpty()) {
+//            Log.d("RegisterActivity", "UID is empty")
+//            return
+//        }
+        val ref = FirebaseDatabase.getInstance().reference.child("user").child(uid)
+        val users = User(uid,_binding.editUsername.text.toString(),_binding.editEmail.text.toString(),profileImageUrl)
         ref.setValue(users)
             .addOnSuccessListener {
                 Log.d("RegisterActivity","Successfully saved user to database")
+                val intent = Intent(this,LatestMessageActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Log.d("RegisterActivity", "Error: ${it.message}")
+                Toast.makeText(this, it.message.toString(), Toast.LENGTH_LONG).show()
             }
     }
-    class User (val uid : String, val username : String, val profileImageUrl : String)
 }
+
 
 

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "881731804389",
+    "firebase_url": "https://samplemessanger-db605-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "samplemessanger-db605",
     "storage_bucket": "samplemessanger-db605.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "881731804389-0ujltbh2fhqpnf4nkle9ev63mjmoilev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rr.chrd.messengernirichard",
+            "certificate_hash": "385e92cd5b482fd28a2358a9369d02ed4d76f892"
+          }
+        },
         {
           "client_id": "881731804389-gd5vaj6u3cgbs2a92nl2b5mk93gsptvm.apps.googleusercontent.com",
           "client_type": 3

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Dinsheng messenger APP</string>
+    <string name="app_name">Dinsheng</string>
+
     <string name="hintUser">Username</string>
     <string name="hintEmail">E-mail</string>
     <string name="hintPassword">Password</string>
@@ -9,5 +10,10 @@
     <string name="bck_to_main">Back to registration?</string>
     <string name="login">login</string>
     <string name="photo_select">Select a Photo</string>
+    <string name="send">Send</string>
+    <string name="enter_message">Enter Message</string>
+
+    <string name="sample_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
 </resources>

@@ -2,9 +2,10 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
     id 'com.google.gms.google-services'
-}
 
+}
 android {
     compileSdk 31
 
@@ -33,6 +34,9 @@ android {
     }
     buildFeatures{
         viewBinding true
+    }
+    androidExtensions {
+        experimental = true
     }
 }
 
@@ -66,4 +70,12 @@ dependencies {
 
     //Circle View for Photos
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Groupie recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation "com.github.lisawray.groupie:groupie:2.10.1"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:2.10.1"
+
+    //Picasso image
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
